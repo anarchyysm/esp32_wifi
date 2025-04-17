@@ -13,4 +13,4 @@ esp32wifi highboy
 6. `idf.py -p PORT monitor` // monitorar o que ta acontendo
 
 ### Arquitetura
-[arquitetura.pnh](arquitetura)
+[arquitetura.png](arquitetura)
