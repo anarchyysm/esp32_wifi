@@ -12,4 +12,5 @@ esp32wifi highboy
 5. `idf.py -p PORT flash` // enviar pro esp32-s3
 6. `idf.py -p PORT monitor` // monitorar o que ta acontendo
 
-
+### Arquitetura
+[arquitetura.pnh](arquitetura)
