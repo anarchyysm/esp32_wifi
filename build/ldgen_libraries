@@ -17,6 +17,7 @@
 /home/outsyder/Developer/Highboy/esp32_wifi/build/esp-idf/log/liblog.a
 /home/outsyder/Developer/Highboy/esp32_wifi/build/esp-idf/heap/libheap.a
 /home/outsyder/Developer/Highboy/esp32_wifi/build/esp-idf/soc/libsoc.a
+/home/outsyder/Developer/Highboy/esp32_wifi/build/esp-idf/esp_security/libesp_security.a
 /home/outsyder/Developer/Highboy/esp32_wifi/build/esp-idf/esp_hw_support/libesp_hw_support.a
 /home/outsyder/Developer/Highboy/esp32_wifi/build/esp-idf/freertos/libfreertos.a
 /home/outsyder/Developer/Highboy/esp32_wifi/build/esp-idf/newlib/libnewlib.a
@@ -51,7 +52,6 @@
 /home/outsyder/Developer/Highboy/esp32_wifi/build/esp-idf/wpa_supplicant/libwpa_supplicant.a
 /home/outsyder/Developer/Highboy/esp32_wifi/build/esp-idf/esp_coex/libesp_coex.a
 /home/outsyder/Developer/Highboy/esp32_wifi/build/esp-idf/esp_wifi/libesp_wifi.a
-/home/outsyder/Developer/Highboy/esp32_wifi/build/esp-idf/esp_gdbstub/libesp_gdbstub.a
 /home/outsyder/Developer/Highboy/esp32_wifi/build/esp-idf/unity/libunity.a
 /home/outsyder/Developer/Highboy/esp32_wifi/build/esp-idf/cmock/libcmock.a
 /home/outsyder/Developer/Highboy/esp32_wifi/build/esp-idf/console/libconsole.a
@@ -60,6 +60,7 @@
 /home/outsyder/Developer/Highboy/esp32_wifi/build/esp-idf/esp_adc/libesp_adc.a
 /home/outsyder/Developer/Highboy/esp32_wifi/build/esp-idf/esp_driver_cam/libesp_driver_cam.a
 /home/outsyder/Developer/Highboy/esp32_wifi/build/esp-idf/esp_eth/libesp_eth.a
+/home/outsyder/Developer/Highboy/esp32_wifi/build/esp-idf/esp_gdbstub/libesp_gdbstub.a
 /home/outsyder/Developer/Highboy/esp32_wifi/build/esp-idf/esp_hid/libesp_hid.a
 /home/outsyder/Developer/Highboy/esp32_wifi/build/esp-idf/tcp_transport/libtcp_transport.a
 /home/outsyder/Developer/Highboy/esp32_wifi/build/esp-idf/esp_http_client/libesp_http_client.a
@@ -77,8 +78,12 @@
 /home/outsyder/Developer/Highboy/esp32_wifi/build/esp-idf/mqtt/libmqtt.a
 /home/outsyder/Developer/Highboy/esp32_wifi/build/esp-idf/nvs_sec_provider/libnvs_sec_provider.a
 /home/outsyder/Developer/Highboy/esp32_wifi/build/esp-idf/perfmon/libperfmon.a
+/home/outsyder/Developer/Highboy/esp32_wifi/build/esp-idf/rt/librt.a
 /home/outsyder/Developer/Highboy/esp32_wifi/build/esp-idf/spiffs/libspiffs.a
 /home/outsyder/Developer/Highboy/esp32_wifi/build/esp-idf/touch_element/libtouch_element.a
 /home/outsyder/Developer/Highboy/esp32_wifi/build/esp-idf/usb/libusb.a
 /home/outsyder/Developer/Highboy/esp32_wifi/build/esp-idf/wifi_provisioning/libwifi_provisioning.a
+/home/outsyder/Developer/Highboy/esp32_wifi/build/esp-idf/espressif__led_strip/libespressif__led_strip.a
+/home/outsyder/Developer/Highboy/esp32_wifi/build/esp-idf/led_control/libled_control.a
+/home/outsyder/Developer/Highboy/esp32_wifi/build/esp-idf/wsl_bypasser/libwsl_bypasser.a
 /home/outsyder/Developer/Highboy/esp32_wifi/build/esp-idf/main/libmain.a
