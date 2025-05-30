@@ -4,7 +4,6 @@ idf_component_register(
     INCLUDE_DIRS     "wifi/include" 
                      "cc1101/include"
     REQUIRES         Drivers
-                     Application
                      esp_common
                      esp_wifi
                      esp_netif
